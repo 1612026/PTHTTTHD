@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Quản lý hợp đồng</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
+
 <body>
 
 
-<form action="/hopdongs/add" method="post" name="form1">
-<div class="form-group">
-  <label for="">Loại hợp đồng</label>
-<select class="form-control" id="TenHopDong" name="TenHopDong">
-      <option value="mua ban">mua ban</option>
-      <option value="cho thue">cho thue</option>
-      <option value="sang nhuong">sang nhuong</option>
-    </select> </div>
-<div class="form-group">
-  <label for="">ID căn hộ</label>
-  <input type="text" name="IDCanHo" class="form-control" id="IDCanHo"   >
-</div>
-<div class="form-group">
-    <label for="">ID chủ sỡ hữu</label>
-    <input type="text" class="form-control" name="IDCuDan" id="IDCuDan" value="" >
-</div>
-<div class="form-group">
-    <label for="">Ngày bắt đầu hợp đồng có hiệu lực </label>
-    <input type="text" class="form-control" name="NgayHieuLuc" id="NgayHieuLuc" value="" >
-</div>
-
-<div class="form-group">
-    <label for="">Thời gian hợp đồng có hiệu lực</label>
-    <input type="text" class="form-control" name="ThoiGian" id="ThoiGian" value="" >
-</div>
-<div class="form-group">
-    <label for="">Trạng thái hợp đồng</label>
-    <select class="form-control" id="TrangThai" name="TrangThai">
+  <form action="/hopdongs/add" method="post" name="form1">
+    <div class="form-group">
+      <label for="">Loại hợp đồng</label>
+      <select class="form-control" id="TenHopDong" name="TenHopDong">
+        <option value="mua ban">mua ban</option>
+        <option value="cho thue">cho thue</option>
+        <option value="sang nhuong">sang nhuong</option>
+      </select> </div>
+    <div class="form-group">
+      <label for="">ID chủ sỡ hữu</label>
+      <input type="text" class="form-control" name="IDCuDan" id="IDCuDan">
+    </div>
+    <div class="form-group">
+      <label for="">ID căn hộ</label>
+      <input type="text" name="IDCanHo" class="form-control" id="IDCanHo">
+    </div>
+    <!-- <div class="form-group">
+      <label for="">Ngày bắt đầu hợp đồng có hiệu lực </label>
+      <input type="text" class="form-control" name="NgayHieuLuc" id="NgayHieuLuc" value="">
+    </div> -->
+    <div class="form-group">
+      <label for="">Trạng thái hợp đồng</label>
+      <select class="form-control" id="TrangThai" name="TrangThai">
         <option value="dang trong">dang hoat dong</option>
         <option value="dang su dung">chua kich hoat</option>
         <option value="dang sua chua">da thanh ly</option>
-      </select> </div>
+      </select> 
+    </div>
+    <!-- <div class="form-group">
+      <label for="">Thời gian hợp đồng có hiệu lực</label>
+      <input type="text" class="form-control" name="ThoiGian" id="ThoiGian" value="">
+    </div> -->
 
- 
-<input type="submit" class="btn btn-primary" value="Thêm">
-<a href="/hopdongs" type="submit" class="btn btn-primary">Hủy</a>
+    <input type="submit" class="btn btn-primary" value="Thêm">
+    <a href="/hopdongs" class="btn btn-primary">Hủy</a>
 
-</form>
+  </form>
 </body>
+
 </html>
