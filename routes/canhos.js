@@ -36,10 +36,10 @@ router.get('/add', function(req, res, next){
  
 // ADD NEW USER POST ACTION
 router.post('/add', function(req, res, next){    
-    req.assert('SoPhong', 'Điền số phòng').notEmpty()           //Validate name
-    req.assert('SoTang', 'Điền số tầng').notEmpty()  //Validate email
-    req.assert('ToaNha', 'Điền tòa nhà').notEmpty()           //Validate name
-    req.assert('LoaiCanHo', 'Điền loại căn hộ').notEmpty()           //Validate name
+    req.assert('SoPhong', 'Điền số phòng').notEmpty()           
+    req.assert('SoTang', 'Điền số tầng').notEmpty()  
+    req.assert('ToaNha', 'Điền tòa nhà').notEmpty()           
+    req.assert('LoaiCanHo', 'Điền loại căn hộ').notEmpty()           
 
     var errors = req.validationErrors()
      

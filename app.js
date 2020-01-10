@@ -26,15 +26,16 @@ app.set('view engine', 'ejs');
 app.get("/", express.static(path.join(__dirname, "./public")));
 
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'uploads/');
-  },
+  destination: './public/uploads/',
 
   // By default, multer removes file extensions so let's add them back
   filename: function(req, file, cb) {
       cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 });
+const upload=multer({
+  storage:storage
+}).single('myImage');
 
 
 const http = require('http');
