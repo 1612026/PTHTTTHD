@@ -108,4 +108,83 @@ router.post('/add', function(req, res, next){
   }
 })
 
+
+
+
+// SHOW EDIT USER FORM
+router.get('/edit/(:id)', function(req, res, next){
+   
+    res.render('hopdongs/edit', {
+        title: 'Thanh lý hợp đồng',
+         
+    })
+      
+    })
+     
+    // EDIT USER POST ACTION
+    router.post('/update/:id', function(req, res, next) {
+        req.assert('SoPhong', 'Điền số phòng').notEmpty()           //Validate name
+        req.assert('SoTang', 'Điền số tầng').notEmpty()  //Validate email
+        req.assert('SoPhong', 'Điền tòa nhà').notEmpty()           //Validate name
+        req.assert('SoPhong', 'Điền loại căn hộ').notEmpty()           //Validate name
+        
+        var errors = req.validationErrors()
+         
+        if( !errors ) {   
+     
+            var user = {
+                SoPhong: req.sanitize('SoPhong').trim(),
+                SoTang: req.sanitize('SoTang').trim(),
+                ToaNha: req.sanitize('ToaNha').trim(),
+                LoaiCanHo: req.sanitize('LoaiCanHo').trim(),
+                TrangThai: req.sanitize('TrangThai').trim()
+            }
+             
+    connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, function(err, result) {
+                    //if(err) throw err
+                    if (err) {
+                        req.flash('error', err)
+                         
+                        // render to views/user/add.ejs
+                        res.render('canhos/edit', {
+                            title: 'Sửa thông tin căn hộ',
+                            IDCanHo: rows[0].IDCanHo,
+                            SoPhong: rows[0].SoPhong,
+                            SoTang: rows[0].SoTang,
+                            ToaNha: rows[0].ToaNha,
+                            LoaiCanHo:rows[0].LoaiCanHo,
+                            TrangThai:rows[0].TrangThai
+                        })
+                    } else {
+                        req.flash('success', 'Cập nhật thông tin căn hộ thành công!');
+                        res.redirect('/canhos');
+                    }
+                })
+             
+        }
+        else {   //Display errors to user
+            var error_msg = ''
+            errors.forEach(function(error) {
+                error_msg += error.msg + '<br>'
+            })
+            req.flash('error', error_msg)
+             
+            /**
+             * Using req.body.name 
+             * because req.param('name') is deprecated
+             */ 
+            res.render('canhos/edit', { 
+                title: 'Sửa thông tin căn hộ',            
+                IDCanHo: req.params.IDCanHo, 
+                SoPhong: req.body.SoPhong,
+                SoTang: req.body.SoTang,
+                ToaNha: req.body.ToaNha,
+                LoaiCanHo: req.body.LoaiCanHo,
+                TrangThai:req.body.TrangThai
+            })
+        }
+    })
+
+
+
 module.exports = router;

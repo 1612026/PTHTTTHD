@@ -13,8 +13,11 @@
 <form action="/hopdongs/add" method="post" name="form1">
 <div class="form-group">
   <label for="">Loại hợp đồng</label>
-  <input type="text" class="form-control" name="TenHopDong" id="TenHopDong" value="" >
-</div>
+<select class="form-control" id="TenHopDong" name="TenHopDong">
+      <option value="mua ban">mua ban</option>
+      <option value="cho thue">cho thue</option>
+      <option value="sang nhuong">sang nhuong</option>
+    </select> </div>
 <div class="form-group">
   <label for="">ID căn hộ</label>
   <input type="text" name="IDCanHo" class="form-control" id="IDCanHo"   >
@@ -34,8 +37,11 @@
 </div>
 <div class="form-group">
     <label for="">Trạng thái hợp đồng</label>
-    <input type="text" class="form-control" name="TrangThai" id="TrangThai" value="" >
-</div>
+    <select class="form-control" id="TrangThai" name="TrangThai">
+        <option value="dang trong">dang hoat dong</option>
+        <option value="dang su dung">chua kich hoat</option>
+        <option value="dang sua chua">da thanh ly</option>
+      </select> </div>
 
  
 <input type="submit" class="btn btn-primary" value="Thêm">
