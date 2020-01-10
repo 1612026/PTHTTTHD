@@ -45,11 +45,11 @@
     <td><%= data[i].SoTang%></td>
     <td><%= data[i].ToaNha%></td>
     <td><%= data[i].LoaiCanHo%></td>
-    <td><%=data[i].TrangThai%></td>
+    <td><%= data[i].TrangThai%></td>
     <td>
     <a class="btn btn-success edit" href="../canhos/edit/<%=data[i].IDCanHo%>">Edit</a>                       
     <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../canhos/delete/<%=data[i].IDCanHo%>">Delete</a>
-    <a class="btn btn-primary" href="../canhos/thanhly/<%=data[i].IDCanHo%>">Thanh lý</a>                       
+    <!-- <a class="btn btn-primary" href="../canhos/thanhly/<%=data[i].IDCanHo%>">Thanh lý</a>                        -->
    </td>
   </tr>
   <% }

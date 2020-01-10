@@ -13,7 +13,7 @@ var connection  = require('./lib/db');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var canhosRouter = require('./routes/canhos');
-var hopdongsRouter =require('/routes/hopdongs');
+var hopdongsRouter =require('./routes/hopdongs');
 
 
 var app = express();

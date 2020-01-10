@@ -116,7 +116,7 @@ connection.query('SELECT * FROM canho WHERE IDCanHo = ' + req.params.id, functio
                     SoTang: rows[0].SoTang,
                     ToaNha: rows[0].ToaNha,
                     LoaiCanHo:rows[0].LoaiCanHo,
-                                      
+                    TrangThai:rows[0].TrangThai                  
                 })
             }            
         })
@@ -129,6 +129,7 @@ router.post('/update/:id', function(req, res, next) {
     req.assert('SoTang', 'Điền số tầng').notEmpty()  //Validate email
     req.assert('SoPhong', 'Điền tòa nhà').notEmpty()           //Validate name
     req.assert('SoPhong', 'Điền loại căn hộ').notEmpty()           //Validate name
+    
     var errors = req.validationErrors()
      
     if( !errors ) {   
@@ -138,6 +139,7 @@ router.post('/update/:id', function(req, res, next) {
             SoTang: req.sanitize('SoTang').trim(),
             ToaNha: req.sanitize('ToaNha').trim(),
             LoaiCanHo: req.sanitize('LoaiCanHo').trim(),
+            TrangThai: req.sanitize('TrangThai').trim()
         }
          
 connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, function(err, result) {
@@ -153,6 +155,7 @@ connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, fu
                         SoTang: rows[0].SoTang,
                         ToaNha: rows[0].ToaNha,
                         LoaiCanHo:rows[0].LoaiCanHo,
+                        TrangThai:rows[0].TrangThai
                     })
                 } else {
                     req.flash('success', 'Cập nhật thông tin căn hộ thành công!');
@@ -179,6 +182,7 @@ connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, fu
             SoTang: req.body.SoTang,
             ToaNha: req.body.ToaNha,
             LoaiCanHo: req.body.LoaiCanHo,
+            TrangThai:req.body.TrangThai
         })
     }
 })

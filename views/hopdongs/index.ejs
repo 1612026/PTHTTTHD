@@ -23,10 +23,12 @@
   <tr>
     <th scope="col">#</th>
     <th scope="col">ID hop dong</th>
-    <th scope="col">Ten hop dong</th>
+    <th scope="col">Loai hop dong</th>
     <th scope="col">ID can ho</th>
     <th scope="col">ID chu so huu</th>
     <th scope="col">Ngay hieu luc</th>
+    <th scope="col">Thoi gian</th>
+
     <th scope="col">Trang thai</th>
 
     
@@ -45,6 +47,8 @@
     <td><%= data[i].IDCanHo%></td>
     <td><%= data[i].IDCuDan%></td>
     <td><%= data[i].NgayHieuLuc%></td>
+    <td><%= data[i].ThoiGian%></td>
+
     <td><%=data[i].TrangThai%></td>
     <td>
     <a class="btn btn-success edit" href="../hopdongs/edit/<%=data[i].IDHopDong%>">Thanh lý</a>                       
