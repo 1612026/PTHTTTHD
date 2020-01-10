@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <form action="/thanhly/<%= IDHopDong %>" method="post" name="form1">
+    <form action="/thanhly/update/<%= IDHopDong %>" method="post" name="form1">
         <div class="form-group">
             <label for="">ID Hợp đồng</label>
             <input type="text" class="form-control" name="IDHopDong" id="IDHopDong" value="<%= IDCanHo %>" placeholder="">
@@ -30,6 +30,10 @@
               <label for="">Ảnh CSVC</label>
               <input type="text" class="form-control" name="AnhCSVC" id="AnhCSVC" value="" placeholder="">
           </div>
+          <div class="form-group">
+            <label for="">Trạng Thái</label>
+            <input type="text" class="form-control" name="TrangThai" id="TrangThai" value="" placeholder="">
+        </div>
           <input type="submit" class="btn btn-primary" value="Thêm">
     </form>
 

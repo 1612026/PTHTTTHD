@@ -24,7 +24,7 @@ router.get('/', function (req, res, next) {
 
 
 // SHOW ADD USER FORM
-router.get('/doit', function (req, res, next) {
+router.get('/doit/(:id)', function (req, res, next) {
     // render to views/user/add.ejs
     res.render('thanhlys/doit', {
         title: 'Thanh lý hợp đồng',
@@ -37,7 +37,7 @@ router.get('/doit', function (req, res, next) {
 })
 
 // ADD NEW USER POST ACTION
-router.post('/doit', function (req, res, next) {
+router.post('/update/:id', function (req, res, next) {
     req.assert('IDHopDong').notEmpty()           //Validate name
     req.assert('NgayThanhLy').notEmpty()           //Validate name
     req.assert('AnhGiayTo').notEmpty()           //Validate name
@@ -73,7 +73,7 @@ router.post('/doit', function (req, res, next) {
                 })
             } else {
                 req.flash('success', 'Thêm căn hộ thành công!');
-                res.redirect('/hopdongs');
+                res.redirect('/thanhlys');
             }
         })
     }
