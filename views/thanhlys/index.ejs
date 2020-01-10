@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quản lý căn hộ</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+  <div>
+    <a href="/" class="btn btn-primary ml-3">Home</a>  
+    <a href="/canhos/add" class="btn btn-secondary ml-3">Thêm căn hộ</a> 
+    <a href="/canhos" class="btn btn-info ml-3">Danh sách căn hộ</a>
+</div>    
+
+  
+
+<br>
+  <table class="table">
+<thead>
+
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">ID</th>
+    <th scope="col">So Phong</th>
+    <th scope="col">So Tang</th>
+    <th scope="col">Toa Nha</th>
+    <th scope="col">Loai Can Ho</th>
+    <th scope="col">Trang Thai</th>
+
+    
+    <th width="300px">Action</th>
+ 
+  </tr>
+</thead>
+<tbody>
+  <% if(data.length){
+ 
+  for(var i = 0; i< data.length; i++) {%>  
+  <tr>
+    <th scope="row"><%= (i+1) %></th>
+    <td><%=data[i].IDThanhLyHD%></td>
+    <td><%= data[i].IDHopDong%></td>
+    <td><%= data[i].NgayThanhLy%></td>
+    <td><%= data[i].AnhGiayTo%></td>
+    <td><%= data[i].AnhCSVC%></td>
+    <td><%= data[i].TrangThai%></td>
+    <td>
+    <!-- <a class="btn btn-success edit" href="../canhos/edit/<%=data[i].IDCanHo%>">Edit</a>                       
+    <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../canhos/delete/<%=data[i].IDCanHo%>">Delete</a>
+    <a class="btn btn-primary" href="../canhos/thanhly/<%=data[i].IDCanHo%>">Thanh lý</a>                        -->
+   </td>
+  </tr>
+  <% }
+           
+   }else{ %>
+       <tr>
+          <td colspan="3">Chưa có thông tin</td>
+       </tr>
+    <% } %>    
+  
+</tbody>
+</table>
+</body>
+</html>
