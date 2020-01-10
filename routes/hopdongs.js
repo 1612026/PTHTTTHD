@@ -116,6 +116,12 @@ router.get('/edit/(:id)', function(req, res, next){
    
     res.render('hopdongs/edit', {
         title: 'Thanh lý hợp đồng',
+        IDThanhLyHD:'',
+        IDHopDong:'',
+        NgayThanhLy:'',
+        AnhGiayTo:'',
+        AnhCSVC:'',
+        TrangThai:''
          
     })
       
