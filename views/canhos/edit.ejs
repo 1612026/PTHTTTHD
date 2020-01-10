@@ -8,6 +8,7 @@
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
+    <h2>Sửa thông tin căn hộ <%=IDCanHo%></h2>
 <form action="/canhos/update/<%= IDCanHo %>" method="post" name="form1">
 
 <div class="form-group">
@@ -26,6 +27,7 @@
       <label for="">Loại căn hộ</label>
       <input type="text" class="form-control" name="LoaiCanHo" id="LoaiCanHo" value="<%= LoaiCanHo %>" placeholder="Nhập loại căn hộ">
   </div>
+  
  
 <button type="submit" class="btn btn-info">Update</button>
 </form>

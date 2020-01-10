@@ -29,7 +29,8 @@ router.get('/add', function(req, res, next){
         SoPhong: '',
         SoTang: '',
         ToaNha: '',
-        LoaiCanHo: '',        
+        LoaiCanHo: '', 
+        TrangThai:'dang trong'       
     })
 })
  
@@ -114,7 +115,8 @@ connection.query('SELECT * FROM canho WHERE IDCanHo = ' + req.params.id, functio
                     SoPhong: rows[0].SoPhong,
                     SoTang: rows[0].SoTang,
                     ToaNha: rows[0].ToaNha,
-                    LoaiCanHo:rows[0].LoaiCanHo                    
+                    LoaiCanHo:rows[0].LoaiCanHo,
+                                      
                 })
             }            
         })
@@ -127,7 +129,6 @@ router.post('/update/:id', function(req, res, next) {
     req.assert('SoTang', 'Điền số tầng').notEmpty()  //Validate email
     req.assert('SoPhong', 'Điền tòa nhà').notEmpty()           //Validate name
     req.assert('SoPhong', 'Điền loại căn hộ').notEmpty()           //Validate name
-  
     var errors = req.validationErrors()
      
     if( !errors ) {   
@@ -136,8 +137,7 @@ router.post('/update/:id', function(req, res, next) {
             SoPhong: req.sanitize('SoPhong').trim(),
             SoTang: req.sanitize('SoTang').trim(),
             ToaNha: req.sanitize('ToaNha').trim(),
-            LoaiCanHo: req.sanitize('LoaiCanHo').trim()
-
+            LoaiCanHo: req.sanitize('LoaiCanHo').trim(),
         }
          
 connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, function(err, result) {
@@ -152,7 +152,7 @@ connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, fu
                         SoPhong: rows[0].SoPhong,
                         SoTang: rows[0].SoTang,
                         ToaNha: rows[0].ToaNha,
-                        LoaiCanHo:rows[0].LoaiCanHo        
+                        LoaiCanHo:rows[0].LoaiCanHo,
                     })
                 } else {
                     req.flash('success', 'Cập nhật thông tin căn hộ thành công!');
@@ -178,7 +178,7 @@ connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, fu
             SoPhong: req.body.SoPhong,
             SoTang: req.body.SoTang,
             ToaNha: req.body.ToaNha,
-            LoaiCanHo: req.body.LoaiCanHo
+            LoaiCanHo: req.body.LoaiCanHo,
         })
     }
 })
@@ -200,6 +200,85 @@ connection.query('DELETE FROM canho WHERE IDCanHo = ' + req.params.id, user, fun
             }
         })
    })
+
+
+// Thanh ly form 
+router.get('thanhly/(:id)', function(req, res, next){    
+    // render to views/user/add.ejs
+    res.render('canhos/thanhly', {
+        title: 'Thanh lý Căn hộ',
+        IDHopDong: '',
+        NgayThanhLy: '',
+        AnhGiayTo: '',
+        AnhCSVC: '',
+        TrangThai:''
+    })
+})
+
+
+router.post('updatethanhly/:id',function(req,res,next){
+    req.assert('IDHopDong',).notEmpty()           //Validate name
+    req.assert('NgayThanhLy',).notEmpty()           //Validate name
+    req.assert('AnhGiayTo',).notEmpty()           //Validate name
+    req.assert('AnhCSVC', ).notEmpty()  //Validate email
+    //req.assert('TrangThai',).notEmpty()           //Validate name
+
+    var errors = req.validationErrors()
+     
+    if( !errors ) {   //No errors were found.  Passed Validation!
+         
+     
+        var user = {
+            IDHopDong:req.sanitize('IDHopDong').escape().trim(),
+            NgayThanhLy:req.sanitize('NgayThanhLy').escape().trim(),
+            AnhGiayTo: req.sanitize('AnhGiayTo').escape().trim(),
+            AnhCSVC: req.sanitize('AnhCSVC').escape().trim(),
+            TrangThai:req.sanitize('TrangThai').escape().trim()
+        }
+         
+     connection.query('INSERT INTO thanhlyhopdong SET ?', user, function(err, result) {
+                //if(err) throw err
+                if (err) {
+                    req.flash('error', err)
+                     
+                    // render to views/user/add.ejs
+                    res.render('canhos/thanhly', {
+                        title: 'Thanh lý căn hộ',
+                        IDHopDong: user.IDHopDong,
+                        NgayThanhLy: user.NgayThanhLy,
+                        AnhGiayTo: user.AnhGiayTo,
+                        AnhCSVC: user.AnhCSVC,
+                        TrangThai: user.TrangThai                    
+                    })
+                } else {                
+                    req.flash('success', 'Thêm căn hộ thành công!');
+                    res.redirect('/canhos');
+                }
+            })
+    }
+    else {   //Display errors to user
+        var error_msg = ''
+        errors.forEach(function(error) {
+            error_msg += error.msg + '<br>'
+        })                
+        req.flash('error', error_msg)        
+         
+        /**
+         * Using req.body.name 
+         * because req.param('name') is deprecated
+         */ 
+        res.render('canhos/thanhly', { 
+            title: 'Thanh lý căn hộ',
+            IDHopDong: req.body.IDHopDong,
+            NgayThanhLy: req.body.NgayThanhLy,
+            AnhGiayTo: req.body.AnhGiayTo,
+            AnhCSVC: req.body.AnhCSVC,
+            TrangThai:req.body.TrangThai
+
+        })
+    }
+})   
  
- 
+
+
 module.exports = router;
