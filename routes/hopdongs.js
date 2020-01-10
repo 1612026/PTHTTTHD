@@ -114,79 +114,82 @@ router.post('/add', function(req, res, next){
 // SHOW EDIT USER FORM
 router.get('/edit/(:id)', function(req, res, next){
    
-    res.render('hopdongs/edit', {
-        title: 'Thanh lý hợp đồng',
-        IDThanhLyHD:'',
-        IDHopDong:'',
-        NgayThanhLy:'',
-        AnhGiayTo:'',
-        AnhCSVC:'',
-        TrangThai:''
-         
+    connection.query('SELECT * FROM thanhlyhopdong' , function(err, rows, fields) {
+        res.render('hopdongs/edit', {
+            title: 'Thanh lý hợp đồng',
+            IDThanhLyHD:'',
+            IDHopDong:'',
+            NgayThanhLy:'',
+            AnhGiayTo:'',
+            AnhCSVC:'',
+            TrangThai:''
+             
+        })     
     })
+    
       
     })
      
     // EDIT USER POST ACTION
     router.post('/update/:id', function(req, res, next) {
-        req.assert('SoPhong', 'Điền số phòng').notEmpty()           //Validate name
-        req.assert('SoTang', 'Điền số tầng').notEmpty()  //Validate email
-        req.assert('SoPhong', 'Điền tòa nhà').notEmpty()           //Validate name
-        req.assert('SoPhong', 'Điền loại căn hộ').notEmpty()           //Validate name
-        
+        req.assert('IDHopDong',).notEmpty()           //Validate name
+        req.assert('NgayThanhLy',).notEmpty()           //Validate name
+        req.assert('AnhGiayTo',).notEmpty()           //Validate name
+        req.assert('AnhCSVC', ).notEmpty()  //Validate email
+        //req.assert('TrangThai',).notEmpty()           //Validate name
+    
         var errors = req.validationErrors()
          
-        if( !errors ) {   
-     
+        if( !errors ) {   //No errors were found.  Passed Validation!
+             
+         
             var user = {
-                SoPhong: req.sanitize('SoPhong').trim(),
-                SoTang: req.sanitize('SoTang').trim(),
-                ToaNha: req.sanitize('ToaNha').trim(),
-                LoaiCanHo: req.sanitize('LoaiCanHo').trim(),
-                TrangThai: req.sanitize('TrangThai').trim()
+                IDHopDong:req.sanitize('IDHopDong').escape().trim(),
+                NgayThanhLy:req.sanitize('NgayThanhLy').escape().trim(),
+                AnhGiayTo: req.sanitize('AnhGiayTo').escape().trim(),
+                AnhCSVC: req.sanitize('AnhCSVC').escape().trim(),
+                TrangThai:req.sanitize('TrangThai').escape().trim()
             }
              
-    connection.query('UPDATE canho SET ? WHERE IDCanHo = ' + req.params.id, user, function(err, result) {
+         connection.query('INSERT INTO thanhlyhopdong SET ?', user, function(err, result) {
                     //if(err) throw err
                     if (err) {
                         req.flash('error', err)
                          
                         // render to views/user/add.ejs
-                        res.render('canhos/edit', {
-                            title: 'Sửa thông tin căn hộ',
-                            IDCanHo: rows[0].IDCanHo,
-                            SoPhong: rows[0].SoPhong,
-                            SoTang: rows[0].SoTang,
-                            ToaNha: rows[0].ToaNha,
-                            LoaiCanHo:rows[0].LoaiCanHo,
-                            TrangThai:rows[0].TrangThai
+                        res.render('canhos/thanhly', {
+                            title: 'Thanh lý căn hộ',
+                            IDHopDong: user.IDHopDong,
+                            NgayThanhLy: user.NgayThanhLy,
+                            AnhGiayTo: user.AnhGiayTo,
+                            AnhCSVC: user.AnhCSVC,
+                            TrangThai: user.TrangThai                    
                         })
-                    } else {
-                        req.flash('success', 'Cập nhật thông tin căn hộ thành công!');
+                    } else {                
+                        req.flash('success', 'Thêm căn hộ thành công!');
                         res.redirect('/canhos');
                     }
                 })
-             
         }
         else {   //Display errors to user
             var error_msg = ''
             errors.forEach(function(error) {
                 error_msg += error.msg + '<br>'
-            })
-            req.flash('error', error_msg)
+            })                
+            req.flash('error', error_msg)        
              
             /**
              * Using req.body.name 
              * because req.param('name') is deprecated
              */ 
-            res.render('canhos/edit', { 
-                title: 'Sửa thông tin căn hộ',            
-                IDCanHo: req.params.IDCanHo, 
-                SoPhong: req.body.SoPhong,
-                SoTang: req.body.SoTang,
-                ToaNha: req.body.ToaNha,
-                LoaiCanHo: req.body.LoaiCanHo,
+            res.render('canhos/thanhly', { 
+                title: 'Thanh lý căn hộ',
+                IDHopDong: req.body.IDHopDong,
+                NgayThanhLy: req.body.NgayThanhLy,
+                AnhGiayTo: req.body.AnhGiayTo,
+                AnhCSVC: req.body.AnhCSVC,
                 TrangThai:req.body.TrangThai
+    
             })
         }
     })
