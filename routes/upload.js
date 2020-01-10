@@ -3,7 +3,7 @@ var express = require('express');
 var connection  = require('../lib/db');
 var router = express.Router();
 
-router.post('/upload-profile-pic', (req, res) => {
+router.post('/upload', (req, res) => {
     // 'profile_pic' is the name of our file input field in the HTML form
     let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
   
