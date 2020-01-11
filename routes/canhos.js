@@ -43,7 +43,7 @@ router.post('/add', function(req, res, next){
 
     var errors = req.validationErrors()
      
-    if( !errors ) {   //No errors were found.  Passed Validation!
+    if( !errors ) {
          
      
         var user = {
@@ -79,11 +79,6 @@ router.post('/add', function(req, res, next){
             error_msg += error.msg + '<br>'
         })                
         req.flash('error', error_msg)        
-         
-        /**
-         * Using req.body.name 
-         * because req.param('name') is deprecated
-         */ 
         res.render('canhos/add', { 
             title: 'Thêm căn hộ',
             SoPhong: req.body.SoPhong,
