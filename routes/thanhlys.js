@@ -88,7 +88,7 @@ router.post('/update/:id', function (req, res, next) {
          * Using req.body.name 
          * because req.param('name') is deprecated
          */
-        res.render('canhos/thanhly', {
+        res.render('canhos/thanhlys', {
             title: 'Thanh lý căn hộ',
             IDHopDong: req.body.IDHopDong,
             NgayThanhLy: req.body.NgayThanhLy,
